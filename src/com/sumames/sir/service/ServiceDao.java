@@ -106,6 +106,8 @@ public interface ServiceDao {
     public List<PurchaseInvoice> getInvoices();
 
     public List<PurchaseInvoice> getInvoices(Date start, Date end);
+    
+    public List<PurchaseInvoiceDetail> getListInvoiceDetailById(int id);
 
     public PurchaseInvoiceDetail getInvoiceDetailById(Integer id);
 
@@ -120,4 +122,10 @@ public interface ServiceDao {
     public PurchasePaymentInvoice getPaymentInvoiceById(Integer id);
 
     public List<PurchasePaymentInvoice> getPaymentInvoices();
+    
+    public List<PurchasePaymentInvoice> getListPaymentInvoiceById(int id);
+    
+    public List<PurchaseInvoice> getListPurchaseInvoiceById(int id);
+    
+    
 }

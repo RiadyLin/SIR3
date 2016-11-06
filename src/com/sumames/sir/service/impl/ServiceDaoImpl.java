@@ -342,4 +342,25 @@ public class ServiceDaoImpl implements ServiceDao {
         return list;
     }
 
+    @Override
+    public List<PurchaseInvoiceDetail> getListInvoiceDetailById(int id) {
+  List<PurchaseInvoiceDetail> list = getCurrentSession().createQuery("from PurchaseInvoiceDetail where purchase_Invoice_record_id=:id")
+                .setParameter("id", id).list();
+                return list;
+    }
+
+    @Override
+    public List<PurchasePaymentInvoice> getListPaymentInvoiceById(int id) {
+        List<PurchasePaymentInvoice> list = getCurrentSession().createQuery("from PurchasePaymentInvoice where purchase_Payment_record_id=:id")
+                .setParameter("id", id).list();
+        return list;
+    }
+
+    @Override
+    public List<PurchaseInvoice> getListPurchaseInvoiceById(int id) {
+       List<PurchaseInvoice> list = getCurrentSession().createQuery("from PurchaseInvoice where record_id=:id")
+                .setParameter("id", id).list();
+        return list;
+    }
+
 }

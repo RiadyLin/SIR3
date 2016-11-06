@@ -261,7 +261,7 @@ public class PurchaseInvoiceList extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void refreshTable() {
-//        invoices = AppUtil.getService().getInvoice();
+        invoices = AppUtil.getService().getInvoices();
         tbInvoice.setModel(new CustomerTableModel(invoices));
         tbInvoice.getColumnModel().getColumn(0).setMinWidth(0);
         tbInvoice.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -270,7 +270,7 @@ public class PurchaseInvoiceList extends javax.swing.JPanel {
     private class CustomerTableModel extends AbstractTableModel {
 
         private List<PurchaseInvoice> listInvoice;
-        private final String[] tableHeaders = {"Record Id", "no", "date", "department", "Invoice_by_record_id", "total", "date_needed", "note"};
+        private final String[] tableHeaders = {"Record Id", "no", "date", "Supplier", "SubTotal", "TaxPercent", "TaxValue", "DiscPercent","DiscValue","Total","Note"};
 
         public CustomerTableModel(List<PurchaseInvoice> listInvoice) {
             this.listInvoice = listInvoice;
@@ -281,7 +281,7 @@ public class PurchaseInvoiceList extends javax.swing.JPanel {
         }
 
         public int getColumnCount() {
-            return 8;
+            return 11;
         }
 
         @Override
@@ -299,14 +299,20 @@ public class PurchaseInvoiceList extends javax.swing.JPanel {
                 case 2:
                     return p.getDate();
                 case 3:
-//                    return p.getDepartment();
+                    return p.getSupplierName();
                 case 4:
-//                    return e.getName();
+                    return p.getSubTotal();
                 case 5:
-//                    return p.getTotal();
+                    return p.getTaxPercent();
                 case 6:
-//                    return p.getDateNeeded();
+                    return p.getTaxValue();
                 case 7:
+                    return p.getDiscPercent();
+                case 8:
+                    return p.getDiscValue();
+                case 9:
+                    return p.getTotal();
+                case 10:
                     return p.getNote();
                 default:
                     return "";
