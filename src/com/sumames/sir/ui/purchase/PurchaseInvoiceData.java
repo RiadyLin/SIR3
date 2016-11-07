@@ -56,7 +56,7 @@ public class PurchaseInvoiceData extends javax.swing.JPanel {
         this.recordId = recordId;
         initComponents();
         loadingData();
-        refreshTable();
+     
     }
 
     /**
@@ -479,7 +479,7 @@ if(tfDiscountValue == null || tfTaxValue == null){
                     if (tbPurchaseInvoice.getValueAt(i, 0) != null) {
                         invoiceDetail.setPurchaseInvoiceRecordId((Integer) tbPurchaseInvoice.getValueAt(i, 0));
                     }
-                    invoiceDetail.setPurchaseInvoiceRecordId(recordId);
+                    invoiceDetail.setRecordId(Integer.parseInt(tbPurchaseInvoice.getValueAt(i,0).toString()));
                     invoiceDetail.setDescription(tbPurchaseInvoice.getValueAt(i, 1).toString());
                     invoiceDetail.setPrice(Double.parseDouble(tbPurchaseInvoice.getValueAt(i, 2).toString()));
                     invoiceDetail.setQty(Double.parseDouble(tbPurchaseInvoice.getValueAt(i, 3).toString()));
@@ -518,7 +518,7 @@ if(tfDiscountValue == null || tfTaxValue == null){
             tfNo.setText(purchaseInvoice.getNo());
             dtDate.setDate(purchaseInvoice.getDate());
             cbOrderNo.setSelectedItem(Support.getKeyFromValue(orderno, purchaseInvoice.getPurchaseOrderRecordId()));
-            tfSubTotal.setText(purchaseInvoice.getTotal().toString());
+            tfSubTotal.setText(purchaseInvoice.getSubTotal().toString());
             taDescription.setText(purchaseInvoice.getNote());
             tfSupplierName.setText(purchaseInvoice.getSupplierName());
             tfDiscPercent.setText(purchaseInvoice.getDiscPercent().toString());
@@ -537,11 +537,11 @@ if(tfDiscountValue == null || tfTaxValue == null){
         if (tbPurchaseInvoice.getSelectedRow() >= 0) {
             switch (tcl.getColumn()) {
                 case 2: {
-                    int a;
+                    Double a;
                     if (tbPurchaseInvoice.getModel().getValueAt(row, 3) == null) {
-                        a = 0;
+                        a = 0.00;
                     } else {
-                        a = Integer.parseInt(tbPurchaseInvoice.getModel().getValueAt(row, 3).toString());
+                        a = Double.parseDouble(tbPurchaseInvoice.getModel().getValueAt(row, 3).toString());
                     }
                     Double b = (Double) tcl.getNewValue();
                     Double subtotal = a * b;
@@ -605,6 +605,15 @@ if(tfDiscountValue == null || tfTaxValue == null){
             dtm.addRow(new Object[]{rd.getRecordId(), rd.getDescription(), rd.getPrice(), rd.getQty(), rd.getSubtotal()});
         }
     }
+    
+    public void refreshTable2(){
+        List<PurchaseInvoiceDetail> list = AppUtil.getService().getListInvoiceDetailById(recordId);
+        DefaultTableModel tm = (DefaultTableModel) tbPurchaseInvoice.getModel();
+        tm.setRowCount(0);
+        for(PurchaseInvoiceDetail id : list){
+            tm.addRow(new Object[]{id.getRecordId(), id.getDescription(), id.getPrice(),id.getQty(),id.getSubtotal()});
+        }
+    }
 
     public void count() {
         if (tbPurchaseInvoice.getRowCount() > 0) {
@@ -664,7 +673,11 @@ if(tfDiscountValue == null || tfTaxValue == null){
         } else if (option.equals("EDIT")) {
             purchaseInvoice = AppUtil.getService().getInvoiceById(recordId);
             objectToForm();
-            refreshTable();
+            cbOrderNoActionPerformed(null);
+            cbOrderNoItemStateChanged(null);
+            cbOrderNo.setEditable(false);
+            cbOrderNo.setEnabled(false);
+            refreshTable2();
         }
     }
 
