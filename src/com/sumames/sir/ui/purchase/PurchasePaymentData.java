@@ -388,7 +388,7 @@ public class PurchasePaymentData extends javax.swing.JPanel {
                     if (tbPurchasePayment.getValueAt(i, 0) != null) {
                         PaymentDetail.setPurchasePaymentRecordId((Integer) tbPurchasePayment.getValueAt(i, 0));
                     }
-                  
+                  PaymentDetail.setRecordId(Integer.parseInt(tbPurchasePayment.getValueAt(i,0).toString()));
                    PaymentDetail.setPayableValue(Double.parseDouble(tbPurchasePayment.getValueAt(i, 1).toString()));
                     PaymentDetail.setCashTransaction(Double.parseDouble(tbPurchasePayment.getValueAt(i, 2).toString()));
                    PaymentDetail.setBankTransaction(Double.parseDouble(tbPurchasePayment.getValueAt(i, 3).toString()));
@@ -577,6 +577,8 @@ public void getTotal(){
             dtm.addRow(new Object[]{rd.getRecordId(), rd.getPayableValue(), rd.getCashTransaction(), rd.getBankTransaction(), rd.getGiroTransaction(), rd.getTotalPayment(),rd.getNote()});
         }
     }
+    
+    
 
   
     
