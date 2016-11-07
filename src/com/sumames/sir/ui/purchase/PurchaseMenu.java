@@ -1,7 +1,6 @@
 package com.sumames.sir.ui.purchase;
 
 import com.sumames.sir.Main;
-import com.sumames.sir.ui.MainFrame;
 import com.sumames.sir.helper.Support;
 
 /*

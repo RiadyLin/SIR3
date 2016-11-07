@@ -10,7 +10,6 @@ import com.sumames.sir.entity.PurchaseRequest;
 import com.sumames.sir.entity.PurchaseRequestDetail;
 import com.sumames.sir.entity.Employer;
 import com.sumames.sir.entity.PurchaseInvoice;
-import com.sumames.sir.entity.PurchasePayment;
 import com.sumames.sir.entity.PurchasePaymentInvoice;
 import com.sumames.sir.entity.PurchasePayment;
 import com.sumames.sir.helper.AppUtil;
