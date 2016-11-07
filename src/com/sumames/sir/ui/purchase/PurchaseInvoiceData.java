@@ -225,6 +225,8 @@ public class PurchaseInvoiceData extends javax.swing.JPanel {
         tfTotal.setPreferredSize(new java.awt.Dimension(100, 30));
 
         tfDiscountValue.setFont(getFont());
+        tfDiscountValue.setEditable(false);
+        tfDiscountValue.setEnabled(false);
         tfDiscountValue.setPreferredSize(new java.awt.Dimension(100, 30));
 
         jLabel10.setFont(getFont());
@@ -239,6 +241,8 @@ public class PurchaseInvoiceData extends javax.swing.JPanel {
         tfTaxPercent.setPreferredSize(new java.awt.Dimension(100, 30));
 
         tfTaxValue.setFont(getFont());
+        tfTaxValue.setEditable(false);
+        tfTaxValue.setEnabled(false);
         tfTaxValue.setPreferredSize(new java.awt.Dimension(100, 30));
 
         tfDiscPercent.setFont(getFont());
@@ -631,16 +635,35 @@ if(tfDiscountValue == null || tfTaxValue == null){
             Double Total = 0.00;
             Double Tax;
             Double Discount;
-            Tax =Double.parseDouble(tfTaxValue.getText());
-            System.out.println(Tax);
+            Double CounterTax;
+            Double CounterDiscount;
+            Double a;
+            Double b;
+            Double SubTotal;
+            Double SubTotal2;
+            
+            
+            SubTotal = Double.parseDouble(tfSubTotal.getText());
+            a = Double.parseDouble(tfTaxPercent.getText());
+            CounterTax = a/100 * SubTotal;
+            System.out.println("CounterTax" + CounterTax);
+            tfTaxValue.setText(CounterTax.toString());
+            SubTotal2 = SubTotal + CounterTax;
+            
+            b = Double.parseDouble(tfDiscPercent.getText());
+            CounterDiscount = b/100 * SubTotal2;
+            System.out.println("CounterDiscount" + CounterDiscount);
+            tfDiscountValue.setText(CounterDiscount.toString());
+            
+            Tax = Double.parseDouble(tfTaxValue.getText()); 
             Discount =Double.parseDouble(tfDiscountValue.getText());
-            System.out.println(Discount);
+            
              for (int i = 0; i <= tbPurchaseInvoice.getRowCount() - 1; i++) {
               
                 Total = Total + Double.parseDouble(tbPurchaseInvoice.getModel().getValueAt(i, 4).toString());
            
             }
-            Total = Total - Discount + Tax ; 
+            Total = Total + Tax - Discount ; 
             tfTotal.setText(Total.toString());
     }
 
