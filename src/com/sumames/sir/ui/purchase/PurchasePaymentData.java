@@ -388,7 +388,7 @@ public class PurchasePaymentData extends javax.swing.JPanel {
                     if (tbPurchasePayment.getValueAt(i, 0) != null) {
                         PaymentDetail.setPurchasePaymentRecordId((Integer) tbPurchasePayment.getValueAt(i, 0));
                     }
-                    PaymentDetail.setPurchasePaymentRecordId(recordId);
+                  
                    PaymentDetail.setPayableValue(Double.parseDouble(tbPurchasePayment.getValueAt(i, 1).toString()));
                     PaymentDetail.setCashTransaction(Double.parseDouble(tbPurchasePayment.getValueAt(i, 2).toString()));
                    PaymentDetail.setBankTransaction(Double.parseDouble(tbPurchasePayment.getValueAt(i, 3).toString()));
@@ -441,6 +441,7 @@ public void getTotal(){
     private void abstractActionPerformed(java.awt.event.ActionEvent evt) {
         TableCellListener tcl = (TableCellListener) evt.getSource();
         int row = tbPurchasePayment.getSelectedRow();
+        Double Total = 0.00;
         if (tbPurchasePayment.getSelectedRow() >= 0) {
             switch (tcl.getColumn()) {
                 case 1: {
@@ -450,15 +451,18 @@ public void getTotal(){
                  
                     if (tbPurchasePayment.getModel().getValueAt(row, 2) != null) {
                        a = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 2).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 3) != null){
+                    }else{
+                        
+                    }if(tbPurchasePayment.getModel().getValueAt(row, 3) != null){
                        b = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 3).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 4) != null)  {
+                    }else{
+                    }if(tbPurchasePayment.getModel().getValueAt(row, 4) != null)  {
                          c = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 4).toString());
                     }else {
                          
                     }
                     Double d = (Double) tcl.getNewValue();
-                    Double Total = a + b + c + d;
+                    Total = a + b + c + d;
                     tbPurchasePayment.setValueAt(Total, row, 5);
                     break;
                 }
@@ -469,9 +473,9 @@ public void getTotal(){
                  
                     if (tbPurchasePayment.getModel().getValueAt(row, 3) != null) {
                    a = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 3).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 4) != null){
+                    }else{} if(tbPurchasePayment.getModel().getValueAt(row, 4) != null){
                     b = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 4).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 1) != null)  {
+                    }else{} if(tbPurchasePayment.getModel().getValueAt(row, 1) != null)  {
                      c = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 1).toString());
                     }else {
                        
@@ -479,7 +483,7 @@ public void getTotal(){
                         
                     }
                     Double d = (Double) tcl.getNewValue();
-                    Double Total = a + b + c + d;
+                     Total = a + b + c + d;
                     tbPurchasePayment.setValueAt(Total, row, 5);
                     break;
                 }
@@ -490,9 +494,9 @@ public void getTotal(){
                  
                     if (tbPurchasePayment.getModel().getValueAt(row, 4) != null) {
                         a = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 4).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 1) != null){
+                    }else{} if(tbPurchasePayment.getModel().getValueAt(row, 1) != null){
                       b = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 1).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 2) != null)  {
+                    }else{} if(tbPurchasePayment.getModel().getValueAt(row, 2) != null)  {
                        c = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 2).toString());
                     }else {
                       
@@ -500,7 +504,7 @@ public void getTotal(){
                         
                     }
                     Double d = (Double) tcl.getNewValue();
-                    Double Total = a + b + c + d;
+                     Total = a + b + c + d;
                     tbPurchasePayment.setValueAt(Total, row, 5);
                     break;
                 }
@@ -511,9 +515,9 @@ public void getTotal(){
                  
                     if (tbPurchasePayment.getModel().getValueAt(row, 1) != null) {
                          a = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 1).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 2) != null){
+                    }else{} if(tbPurchasePayment.getModel().getValueAt(row, 2) != null){
                         b = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 2).toString());
-                    }else if(tbPurchasePayment.getModel().getValueAt(row, 3) != null)  {
+                    }else{} if(tbPurchasePayment.getModel().getValueAt(row, 3) != null)  {
                        c = Double.parseDouble(tbPurchasePayment.getModel().getValueAt(row, 3).toString());
                     }else {
                       
@@ -521,7 +525,7 @@ public void getTotal(){
                         
                     }
                     Double d = (Double) tcl.getNewValue();
-                    Double Total = a + b + c + d;
+                    Total = a + b + c + d;
                     tbPurchasePayment.setValueAt(Total, row, 5);
                     break;
                 }
