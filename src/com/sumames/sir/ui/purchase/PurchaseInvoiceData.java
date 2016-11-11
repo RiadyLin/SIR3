@@ -239,6 +239,11 @@ public class PurchaseInvoiceData extends javax.swing.JPanel {
 
         tfTaxPercent.setFont(getFont());
         tfTaxPercent.setPreferredSize(new java.awt.Dimension(100, 30));
+        tfTaxPercent.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfTaxPercentKeyPressed(evt);
+            }
+        });
 
         tfTaxValue.setFont(getFont());
         tfTaxValue.setEditable(false);
@@ -247,6 +252,11 @@ public class PurchaseInvoiceData extends javax.swing.JPanel {
 
         tfDiscPercent.setFont(getFont());
         tfDiscPercent.setPreferredSize(new java.awt.Dimension(100, 30));
+        tfDiscPercent.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfDiscPercentKeyPressed(evt);
+            }
+        });
 
         jButton1.setText("Count!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -416,6 +426,14 @@ if(tfDiscountValue == null || tfTaxValue == null){
     counttax();
 }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tfDiscPercentKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDiscPercentKeyPressed
+counttax();
+    }//GEN-LAST:event_tfDiscPercentKeyPressed
+
+    private void tfTaxPercentKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTaxPercentKeyPressed
+counttax();
+    }//GEN-LAST:event_tfTaxPercentKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -637,20 +655,20 @@ if(tfDiscountValue == null || tfTaxValue == null){
             Double Discount;
             Double CounterTax;
             Double CounterDiscount;
-            Double a;
-            Double b;
+            int a;
+            int b;
             Double SubTotal;
             Double SubTotal2;
             
             
             SubTotal = Double.parseDouble(tfSubTotal.getText());
-            a = Double.parseDouble(tfTaxPercent.getText());
+            a = Integer.parseInt(tfTaxPercent.getText());
             CounterTax = a/100 * SubTotal;
             System.out.println("CounterTax" + CounterTax);
             tfTaxValue.setText(CounterTax.toString());
             SubTotal2 = SubTotal + CounterTax;
             
-            b = Double.parseDouble(tfDiscPercent.getText());
+            b = Integer.parseInt(tfDiscPercent.getText());
             CounterDiscount = b/100 * SubTotal2;
             System.out.println("CounterDiscount" + CounterDiscount);
             tfDiscountValue.setText(CounterDiscount.toString());
